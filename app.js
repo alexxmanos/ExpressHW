@@ -1,47 +1,53 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+const port = 3000; 
 
-const generateHomePage = require('./views/index');
-const generateAboutPage = require('./views/about');
-const generateDynamicPage = require('./views/page');
+app.set('view engine', 'ejs'); 
+app.set('views', __dirname + '/views'); 
 
-// Sample data
-const items = [
-  'Item 1',
-  'Item 2',
-  'Item 3',
-  'Item 4',
-  'Item 5',
-  'Item 6',
-  'Item 7',
-  'Item 8',
-  'Item 9',
-  'Item 10',
-];
-
-// Set the content type to HTML
-app.set('Content-Type', 'text/html');
-
-// Route for the home page
 app.get('/', (req, res) => {
-  res.send(generateHomePage(items));
+  res.render('template1', { title: 'Home Page' });
 });
 
-// Route for the about page
 app.get('/about', (req, res) => {
-  res.send(generateAboutPage());
+  res.render('template1', { title: 'About Page' });
 });
 
-// Dynamic routes for pages 1 to 10
-for (let i = 1; i <= 10; i++) {
-  app.get(`/page${i}`, (req, res) => {
-    res.send(generateDynamicPage(i));
-  });
-}
+app.get('/contact', (req, res) => {
+  res.render('template1', { title: 'Contact Page' });
+});
 
-// Start the server
+app.get('/page1', (req, res) => {
+  res.render('template1', { title: 'Page 1' });
+});
+
+app.get('/page2', (req, res) => {
+  res.render('template1', { title: 'Page 2' });
+});
+
+app.get('/page3', (req, res) => {
+  res.render('template2', { title: 'Page 3' });
+});
+
+app.get('/page4', (req, res) => {
+  res.render('template2', { title: 'Page 4' });
+});
+
+app.get('/page5', (req, res) => {
+  res.render('template2', { title: 'Page 5' });
+});
+
+app.get('/page6', (req, res) => {
+  res.render('template2', { title: 'Page 6' });
+});
+
+app.get('/page7', (req, res) => {
+  res.render('template2', { title: 'Page 7' });
+});
+
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
+
 
